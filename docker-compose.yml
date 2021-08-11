@@ -1,0 +1,26 @@
+volumes: 
+    mysql_data:
+    redis_data:
+
+services:
+    mysql:
+        image: mysql:8 
+        ports: 
+            - 3306:3306
+        volumes: 
+            - mysql_data:/var/lib/mysql 
+        environment: 
+            MYSQL_USER: demo
+            MYSQL_PASSWORD: Adminpw1
+            MYSQL_DATABSE: demo_development
+            MYSQL_ROOT_PASSWORD: Adminpw1
+    redis:
+        image: redis:6-alpine
+        ports: 
+          - 6379:6379
+        volumes: 
+         - redis_data:/data
+    mailhog:
+        image: mailhog/mailhog:latest   
+        ports: 
+            - 8025:8025
